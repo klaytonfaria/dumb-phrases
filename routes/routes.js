@@ -1,3 +1,7 @@
+var mongojs = require('mongojs'),
+  db = mongojs("node-mongo-dumbPhrases"),
+  dumbPhrases = db.collection('dumbPhrases');
+
 exports.index = function(res, res) {
   res.render('index', {
     title: 'Teste',
@@ -6,8 +10,8 @@ exports.index = function(res, res) {
   });
 };
 
-exports.all = function(req, res) {	
-  dumbPhrasesProvider.findAll(function(error, phrases){
+exports.all = function (req, res) {
+  dumbPhrases.find(function(error, phrases){
       res.render('all', {
       title: "Dumb Phrases",
       phrases : phrases
@@ -22,10 +26,10 @@ exports.new_get = function(req, res) {
 };
 
 exports.new_post = function(req, res) {
-	dumbPhrasesProvider.save({      
+	dumbPhrases.save({
 		title: req.param('title'),
 		author: {
-			name: req.param('name'), 
+			name: req.param('name'),
 			age: req.param('mental-age')
 		},
 		phrase : req.param('phrase')
