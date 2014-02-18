@@ -1,6 +1,7 @@
 var mongojs = require('mongojs'),
   db = mongojs("node-mongo-dumbPhrases"),
-  dumbPhrases = db.collection('dumbPhrases');
+  dumbPhrases = db.collection('dumbPhrases'),
+  utils = require('./utils');
 
 exports.index = function(res, res) {
   res.render('index', {
@@ -37,3 +38,29 @@ exports.new_post = function(req, res) {
 		res.redirect('/')
 	});
 }
+
+// Rest API
+exports.api = {};
+exports.api.phrases = function(req, res) {
+  dumbPhrases.find(function (err, phrases) {
+    if (err) {
+        utils.responseJSON(500, res, err);
+      } else {
+        utils.responseJSON(200, res, phrases);
+    }
+  });
+}
+
+exports.api.phrase = function(req, res) {
+  dumbPhrases.findOne({
+    _id:mongojs.ObjectId(req.params.id)
+  },function (err, phrase) {
+    if (err) {
+        utils.responseJSON(500, res, err);
+      } else {
+        utils.responseJSON(200, res, phrase);
+    }
+  });
+}
+
+
