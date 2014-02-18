@@ -3,6 +3,8 @@ var mongojs = require('mongojs'),
   dumbPhrases = db.collection('dumbPhrases'),
   utils = require('./utils');
 
+// Templates
+
 exports.index = function(res, res) {
   res.render('index', {
     title: 'Teste',
@@ -13,7 +15,7 @@ exports.index = function(res, res) {
 
 exports.all = function (req, res) {
   dumbPhrases.find(function(error, phrases){
-      res.render('all', {
+      res.render(['index'], {
       title: "Dumb Phrases",
       phrases : phrases
     });
