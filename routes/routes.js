@@ -13,8 +13,12 @@ exports.index = function(res, res) {
   });
 };
 
-exports.all = function (req, res) {
-  dumbPhrases.find(function(error, phrases){
+exports.posts = function (req, res) {
+  var filter;
+  if (req.params && req.params.id) {
+    filter = {_id:mongojs.ObjectId(req.params.id)};
+  }
+  dumbPhrases.find(filter, function(error, phrases){
       res.render(['index'], {
       title: "Dumb Phrases",
       phrases : phrases
@@ -22,13 +26,7 @@ exports.all = function (req, res) {
   });
 }
 
-exports.new_get = function(req, res) {
-    res.render('new', {
-        title: 'New awesome dumb phrase'
-    });
-};
-
-exports.new_post = function(req, res) {
+exports.addPost = function(req, res) {
 	dumbPhrases.save({
 		title: req.param('title'),
 		author: {
@@ -37,14 +35,18 @@ exports.new_post = function(req, res) {
 		},
 		phrase : req.param('phrase')
 	}, function(error, docs) {
-		res.redirect('/')
+		// res.redirect('/')
 	});
 }
 
 // Rest API
 exports.api = {};
-exports.api.phrases = function(req, res) {
-  dumbPhrases.find(function (err, phrases) {
+exports.api.posts = function(req, res) {
+  var filter;
+  if (req.params && req.params.id) {
+    filter = {_id:mongojs.ObjectId(req.params.id)};
+  }
+  dumbPhrases.find(filter, function (err, phrases) {
     if (err) {
         utils.responseJSON(500, res, err);
       } else {
@@ -52,17 +54,3 @@ exports.api.phrases = function(req, res) {
     }
   });
 }
-
-exports.api.phrase = function(req, res) {
-  dumbPhrases.findOne({
-    _id:mongojs.ObjectId(req.params.id)
-  },function (err, phrase) {
-    if (err) {
-        utils.responseJSON(500, res, err);
-      } else {
-        utils.responseJSON(200, res, phrase);
-    }
-  });
-}
-
-

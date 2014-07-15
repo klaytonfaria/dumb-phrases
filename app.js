@@ -5,18 +5,7 @@ var express = require('express'),
   routes = require('./routes/routes'),
   path = require('path'),
   cons = require('consolidate'),
-  app = express(),
-  appPath = {
-    index: "/",
-    phrases: {
-      all: ["/phrases","/phrases/all"],
-      add: "/phrases/add",
-    },
-    api: {
-      phrases: ["/api/phrases","/api/phrases/all"],
-      phrase: "/api/phrase/:id",
-    }
-  };
+  app = express();
 
 // all environments
 app.configure(function() {
@@ -28,13 +17,37 @@ app.configure(function() {
 });
 
 // Routes
-//app.get(appPath.assets, routes.assets);
+var appPath = {
+  index: "/",
+  posts: {
+    all: "/posts",
+    one: "/posts/:id",
+  },
+  api: {
+    posts: "/api/posts",
+    posts_one: "/api/posts/:id",
+  }
+};
+
+// FRONT
 app.get(appPath.index, routes.index);
-app.get(appPath.phrases.all, routes.all);
-app.get(appPath.phrases.add, routes.new_get);
-app.post(appPath.phrases.add, routes.new_post);
-app.get(appPath.api.phrases, routes.api.phrases);
-app.get(appPath.api.phrase, routes.api.phrase);
+app.get(appPath.posts.all, routes.posts);
+app.get(appPath.posts.one, routes.posts);
+
+
+// REST
+app.get(appPath.api.posts, routes.api.posts);
+app.get(appPath.api.posts_one, routes.api.posts);
+app.post(appPath.api.posts, routes.addPost);
+
+
+
+
+
+
+
+
+
 
 // Create and listen server application
 http.createServer(app).listen(app.get('port'), function(){
