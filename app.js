@@ -34,20 +34,10 @@ app.get(appPath.index, routes.index);
 app.get(appPath.posts.all, routes.posts);
 app.get(appPath.posts.one, routes.posts);
 
-
 // REST
 app.get(appPath.api.posts, routes.api.posts);
 app.get(appPath.api.posts_one, routes.api.posts);
 app.post(appPath.api.posts, routes.addPost);
-
-
-
-
-
-
-
-
-
 
 // Create and listen server application
 http.createServer(app).listen(app.get('port'), function(){
