@@ -1,10 +1,10 @@
 // Module dependencies
-
 var express = require('express'),
   http = require('http'),
   routes = require('./routes/routes'),
   path = require('path'),
   cons = require('consolidate'),
+  utils = require('./routes/utils'),
   app = express();
 
 // all environments
@@ -16,30 +16,14 @@ app.configure(function() {
   app.set('view engine', 'hbs');
 });
 
+// Logger
+app.use(express.logger('dev'));
+
 // Routes
-var appPath = {
-  index: "/",
-  posts: {
-    all: "/posts",
-    one: "/posts/:id",
-  },
-  api: {
-    posts: "/api/posts",
-    posts_one: "/api/posts/:id",
-  }
-};
-
-// FRONT
-app.get(appPath.index, routes.index);
-app.get(appPath.posts.all, routes.posts);
-app.get(appPath.posts.one, routes.posts);
-
-// REST
-app.get(appPath.api.posts, routes.api.posts);
-app.get(appPath.api.posts_one, routes.api.posts);
-app.post(appPath.api.posts, routes.addPost);
+utils.setRoutes.get(app);
+utils.setRoutes.post(app);
 
 // Create and listen server application
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Blog server listening on port: ' + app.get('port'));
 });

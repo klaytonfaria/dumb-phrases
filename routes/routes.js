@@ -3,9 +3,9 @@ var mongojs = require('mongojs'),
   dumbPhrases = db.collection('dumbPhrases'),
   utils = require('./utils');
 
-// Templates
-
-exports.index = function(res, res) {
+// Templates (Front)
+exports.front = {};
+exports.front.index = function(res, res) {
   res.render('index', {
     title: 'Teste',
     author: {name: 'Klayton Faria', age:27},
@@ -13,7 +13,7 @@ exports.index = function(res, res) {
   });
 };
 
-exports.posts = function (req, res) {
+exports.front.posts = function (req, res) {
   var filter;
   if (req.params && req.params.id) {
     filter = {_id:mongojs.ObjectId(req.params.id)};
@@ -26,7 +26,7 @@ exports.posts = function (req, res) {
   });
 }
 
-exports.addPost = function(req, res) {
+exports.front.addPost = function(req, res) {
 	dumbPhrases.save({
 		title: req.param('title'),
 		author: {
