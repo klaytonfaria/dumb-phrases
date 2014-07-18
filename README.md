@@ -1,7 +1,7 @@
 dumb-phrases
 ============
 
-My Node.js + Express.js + Handlebars + MongoDB playground
+My Node.js + Express.js + Handlebars + MongoDB blog
 
 Installation
 --------------
