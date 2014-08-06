@@ -17,8 +17,13 @@
       <div class="large-9 columns">
       --+
       {{#posts "posts" id="53c5262692c760e0e7000003"}}
-        {{log this}}
+        {{#each "posts"}}
+        {{name}}
+
+        {{/each}}
+
       {{/posts}}
+
       +--
 
         {{#each phrases}}

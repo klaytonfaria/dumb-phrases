@@ -67,7 +67,7 @@ exports.api.posts = function(req, res) {
     if (err) {
         utils.responseJSON(500, res, err);
       } else {
-        utils.responseJSON(200, res, phrases);
+        utils.responseJSON(200, res, {posts : phrases});
     }
   });
 }

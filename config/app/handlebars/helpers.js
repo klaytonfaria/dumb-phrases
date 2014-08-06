@@ -3,32 +3,35 @@ var settings = require('../settings'),
     Handlebars = require('hbs'),
     Step = require('step');
 
+function getData(url, callback) {
+  // Loading projection
+  request({url: url, json: true}, function (error, response, data) {
+    if (!error && response.statusCode == 200) {
+      callback(data);
+    }
+  });
+}
 
-
+function getContext(url) {
+  returngetData(url, function(data){
+    data = JSON.stringify(data);
+    return data;
+  });
+}
 
 Handlebars.registerHelper('posts', function(context, options) {
-  Step(
-    // Building url
-    function buildUrl() {
-      var url = settings.constants.SERVICES_PATH + context;
-      for(key in options.hash) {
-        if(options.hash.hasOwnProperty("id") && key === "id") {
-          url = url + "/" + options.hash["id"];
-        }
-      }
-      return url;
-    },
-    // Loading projection
-    function loadProjection(err, url) {
-      request({url: url, json: true}, function (error, response, data) {
-        if (!error && response.statusCode == 200) {
-          context = JSON.stringify(data);
-          //console.log("1- " + context);
-        }
-      });
-      return context;
+  var content = {posts:[{name:"klayton"}]};
+  // Building url
+  var url = settings.constants.SERVICES_PATH + context;
+  for(key in options.hash) {
+    if(options.hash.hasOwnProperty("id") && key === "id") {
+      url = url + "/" + options.hash["id"];
+      //content = getContext(url);
     }
-  );
+  }
+
+    console.log(content);
+    return JSON.stringify(content);
 });
 
 
