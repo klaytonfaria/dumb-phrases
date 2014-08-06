@@ -1,5 +1,4 @@
-var virtualPaths = require('../config/app/paths'),
-    routes = require('./routes');
+var routes = require('./routes');
 
 // Utils
 exports.responseJSON = function (status, res, content) {
@@ -31,7 +30,7 @@ exports.getProperties = function (obj, callback) {
 }
 
 exports.setRoutes = {
-  get : function(app) {
+  get : function(app, virtualPaths) {
     exports.getProperties(virtualPaths.get, function(routesObj){
       callback = eval("routes." + routesObj[1]);
       callback = callback ? callback : function(){};
@@ -40,7 +39,7 @@ exports.setRoutes = {
     });
     return app;
   },
-  post : function(app) {
+  post : function(app, virtualPaths) {
     exports.getProperties(virtualPaths.post, function(routesObj){
       callback = eval("routes." + routesObj[1]);
       callback = callback ? callback : function(){};

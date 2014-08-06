@@ -15,6 +15,12 @@
       <!-- Main Feed -->
       <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
       <div class="large-9 columns">
+      --+
+      {{#posts "posts" id="53c5262692c760e0e7000003"}}
+        {{log this}}
+      {{/posts}}
+      +--
+
         {{#each phrases}}
         <div class="row">
           <div class="large-2 columns small-3"><img src="http://placehold.it/80x80&text=[img]" /></div>
@@ -55,7 +61,7 @@
         <hr />
         <div class="row">
           <div class="large-5 columns">
-            <p><small>Developed by Jones :)</small></p>
+            <p><small>Developed by {{> author_name}} :)</small></p>
           </div>
         </div>
       </div>

@@ -1,11 +1,5 @@
 {
   "get" : {
-    "front" : {
-      "index"             : ["/", "front.index"],
-      "posts"             : ["/posts/:id", "front.posts"],
-      "singlePost"        : ["/posts", "front.posts"],
-      "singlePostKlayton" : ["/klayton", "front.posts"]
-    },
     "api" : {
       "posts"       : ["/api/posts/:id", "api.posts"],
       "singlePost"  : ["/api/posts", "api.posts"],
