@@ -15,16 +15,15 @@
       <!-- Main Feed -->
       <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
       <div class="large-9 columns">
-      --+
-      {{#posts "posts" id="53c5262692c760e0e7000003"}}
-        {{#each "posts"}}
-        {{name}}
 
-        {{/each}}
+      {{!-- {{#projection (context "posts" id="53c5262692c760e0e7000003")}}
 
-      {{/posts}}
+      {{/projection}} --}}
 
-      +--
+      {{#context "posts" id="53c5262692c760e0e7000003"}}
+
+      {{/context}}
+
 
         {{#each phrases}}
         <div class="row">
