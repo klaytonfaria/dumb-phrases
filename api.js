@@ -9,7 +9,7 @@ var express = require('express'),
 
 // all environments
 app.configure(function() {
-  app.set('port', process.env.PORT || 9000);
+  app.set('port', process.env.PORT || 3030);
 });
 
 // Logger
