@@ -5,7 +5,7 @@
       "posts"             : ["/posts/:id", "front.posts"],
       "singlePost"        : ["/posts", "front.posts"],
       "singlePostKlayton" : ["/klayton", "front.posts"],
-      "singlePostFabinho" : ["/fabinho", "front.posts"]
+      "singlePostigor" : ["/igor", "front.posts"]
     }
   },
   "post" : {

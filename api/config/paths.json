@@ -1,0 +1,11 @@
+{
+  "get" : {
+    "post_all"    : ["/api/posts/:id", "posts"],
+    "post_single" : ["/api/posts", "posts"],
+    "menu"        : ["/api/menu", "menu"]
+  },
+  "post" : {
+    "post_new" : ["/api/posts", "createPost"],
+    "menu"     : ["/api/menu",  "createMenu"]
+  }
+}
