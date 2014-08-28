@@ -1,10 +1,18 @@
 var mongojs = require('mongojs'),
   db = mongojs("node-mongo-dumbPhrases"),
-  dumbPhrases = db.collection('dumbPhrases'),
-  utils = require('./utils');
+  dumbPhrases = db.collection('dumbPhrases');
 
 
-exports.posts = function (req, res) {
+exports.all = function (req, res) {
+  dumbPhrases.find(function(error, phrases){
+      res.render(['index'], {
+      title: "Dumb Phrases",
+      phrases : phrases
+    });
+  });
+}
+
+exports.singlePost = function (req, res) {
   var filter;
   if (req.params && req.params.id) {
     filter = {_id:mongojs.ObjectId(req.params.id)};

@@ -1,0 +1,11 @@
+{
+  "get" : {
+    "post_all"    : ["/posts/:id", "posts", "singlePost"],
+    "post_single" : ["/posts", "posts", "all"],
+    "menu"        : ["/menu", "menu", "menu"]
+  },
+  "post" : {
+    "post_new" : ["/posts", "createPost", "createPost"],
+    "menu"     : ["/menu",  "createMenu", "createMenu"]
+  }
+}

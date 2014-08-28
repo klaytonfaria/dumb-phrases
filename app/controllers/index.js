@@ -1,7 +1,6 @@
 var mongojs = require('mongojs'),
   db = mongojs("node-mongo-dumbPhrases"),
-  dumbPhrases = db.collection('dumbPhrases'),
-  utils = require('./utils');
+  dumbPhrases = db.collection('dumbPhrases');
 
 exports.index = function(res, res) {
   res.render('index', {

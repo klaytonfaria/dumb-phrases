@@ -1,17 +1,16 @@
-var settings = require('../settings'),
-    Client = require('node-rest-client').Client,
+var appPath = process.cwd(),
+    settings = require(appPath + "/config/settings"),
+    Client = require("node-rest-client").Client,
     client = new Client(),
-    request = require('request'),
-    Handlebars = require('hbs'),
-    Step = require('step');
+    Handlebars = require("hbs");
 
 
-Handlebars.registerHelper('projection', function(context, options) {
+Handlebars.registerHelper("projection", function(context, options) {
 
   return context.posts.title;
 });
 
-Handlebars.registerHelper('context', function(context, options) {
+Handlebars.registerHelper("context", function(context, options) {
   var content = {"posts": {
     "_id":"53c5262692c760e0e7000003",
     "title":"Teste",
