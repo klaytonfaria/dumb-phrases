@@ -1,3 +1,17 @@
+var appPath = process.cwd(),
+    fs = require('fs'),
+    settings = require(appPath + "/config/settings").constants,
+    routes = {};
+
+// Register all routes dinamically
+fs.readdirSync(appPath + settings.ROUTES_PATH).forEach(function(file) {
+  if(file.substr(-3) == ".js") {
+    var fileNamefile = file.replace(".js","");
+    routes[fileNamefile] = require(appPath + settings.ROUTES_PATH + file);
+    //require(appPath + settings.ROUTES_PATH + file);
+  }
+});
+
 // Utils
 exports.responseJSON = function (status, res, content) {
   res.writeHead(status, {"Content-Type" : "application/json"});
@@ -29,23 +43,29 @@ exports.getProperties = function (obj, callback) {
 
 exports.setRoutes = {
   get : function(app, virtualPaths) {
-    exports.getProperties(virtualPaths.get, function(routesObj){
-      callback = eval("routes." + routesObj[1]);
-      callback = callback ? callback : function(){};
-      app.get(routesObj[0], callback);
-
+    exports.getProperties(virtualPaths, function(routesObj){
+      var callback = eval("routes." + routesObj[1]);
+      if(callback && callback !== "") {
+        callback = callback[routesObj[2]];
+        if(callback) {
+          app.get(routesObj[0], callback);
+        }
+      }
     });
     return app;
   },
   post : function(app, virtualPaths) {
-    exports.getProperties(virtualPaths.post, function(routesObj){
-      callback = eval("routes." + routesObj[1]);
-      callback = callback ? callback : function(){};
-      app.post(routesObj[0], callback);
-
+    exports.getProperties(virtualPaths, function(routesObj){
+      var callback = eval("routes." + routesObj[1]);
+      if(callback && callback !== "") {
+        callback = callback[routesObj[2]];
+        if(callback) {
+          app.post(routesObj[0], callback);
+        }
+      }
     });
     return app;
-  }
+  },
 }
 
 
