@@ -9,7 +9,7 @@
     "express": "3.4.8",
     "hbs": "~2.7.0",
     "mongojs": "~0.10.0",
-    "node-rest-client": "~1.0.0",
-    "pretty-error": "~1.1.1"
+    "pretty-error": "~1.1.1",
+    "node-rest-client": "~1.0.0"
   }
 }
