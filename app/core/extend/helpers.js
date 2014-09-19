@@ -1,5 +1,5 @@
 var appPath = process.cwd(),
-    settings = require(appPath + "/config/settings"),
+    settings = require(appPath + "/core/config/settings"),
     Client = require("node-rest-client").Client,
     client = new Client(),
     Handlebars = require("hbs");

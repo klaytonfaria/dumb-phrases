@@ -5,9 +5,10 @@ var express = require("express"),
     hbs = require("hbs"),
     http = require("http"),
     path = require("path"),
-    utils = require("./extend/utils"),
-    helpers = require("./extend/helpers"),
-    settings = require("./config/settings").constants;
+    utils = require("./core/extend/utils"),
+    helpers = require("./core/extend/helpers"),
+    settings = require("./core/config/settings").constants;
+
 
 // Pretty errors
 var pe = new PrettyError();
@@ -15,23 +16,19 @@ pe.start();
 
 // all environments
 app.configure(function() {
-  app.set("port", process.env.PORT || 3000);
-  app.set("views", path.join(__dirname, "views"));
-  app.use(express.static(path.join(__dirname, "static")));
+  app.set("port", process.env.PORT || settings.APP_PORT);
+  app.set("views", path.join(__dirname, "/content/views"));
+  app.use(express.static(path.join(__dirname, "/content/static")));
   app.engine("hbs", hbs.__express);
   app.set("view engine", "hbs");
+  hbs.registerPartials(__dirname + "/content/views/partials");
 });
-
-// Register partials
-hbs.registerPartials(__dirname + "/views/partials");
-
 
 // Logger
 app.use(express.logger("dev"));
 
 // Routes
-utils.setRoutes.get(app, settings.VIRTUAL_PATHS.get);
-utils.setRoutes.post(app, settings.VIRTUAL_PATHS.post);
+utils.requireRecursive(app, "./core/controllers/");
 
 // Create and listen server application
 http.createServer(app).listen(app.get("port"), function(){
