@@ -26,3 +26,14 @@ module.exports.singlePost = function(req, res) {
     }
   });
 }
+
+module.exports.createPost = function(req, res) {
+  dumbPhrases.save({
+    title: req.param('title'),
+    author: {
+      name: req.param('name'),
+      age: req.param('mental-age')
+    },
+    phrase : req.param('phrase')
+  });
+}

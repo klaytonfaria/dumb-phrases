@@ -5,7 +5,7 @@
     "menu"        : ["/menu", "menu", "menu"]
   },
   "post" : {
-    "post_new" : ["/posts", "createPost", "createPost"],
+    "post_new" : ["/posts", "posts", "createPost"],
     "menu"     : ["/menu",  "createMenu", "createMenu"]
   }
 }

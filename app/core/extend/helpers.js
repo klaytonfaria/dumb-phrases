@@ -12,7 +12,8 @@ Handlebars.registerHelper("projection", function(context, options) {
 Handlebars.registerHelper("context", function(context, options) {
 
   // Building url
-  var url = settings.constants.SERVICES_PATH + context;
+  var appOtions = settings.constants,
+      url = appOtions.SERVICES_PATH + ":" + appOtions.SERVICES_PORT + "/" + context;
   for(key in options.hash) {
     if(options.hash.hasOwnProperty("id") && key === "id") {
       url = url + "/" + options.hash["id"];
@@ -22,7 +23,7 @@ Handlebars.registerHelper("context", function(context, options) {
   var responseData = {
         "posts": {
         "_id":"53c5262692c760e0e7000003",
-        "title":"Não funcionou",
+        "title":"Async",
         "author": {
           "name":"Klayton Faria",
           "age":"27"},
@@ -31,7 +32,8 @@ Handlebars.registerHelper("context", function(context, options) {
       };
 
   client.get(url, function(data) {
-      responseData = data;
+      responseData = data;      
+      return options.fn(responseData);
     }
   );
 
