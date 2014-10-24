@@ -25,9 +25,6 @@ app.configure(function() {
   app.custom.settings = settings;
 });
 
-
-console.log(paths);
-
 // Routes
 app.custom.utils.requireRecursive(app, "./controllers/");
 
