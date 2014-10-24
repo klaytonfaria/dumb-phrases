@@ -3,7 +3,7 @@ module.exports = function(app, mongojs) {
 
   app.get(app.custom.paths.home.default, function(req, res) {
     appData.find(function(error, phrases){
-      res.render(['index'], {
+      res.render(['login'], {
         title: "Dumb Phrases",
         phrases : phrases
       });
