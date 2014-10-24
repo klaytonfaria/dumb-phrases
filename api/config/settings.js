@@ -1,6 +1,7 @@
 exports.constants = {
-  "SERVICES_PATH" : "http://localhost:3030/",
+  "APP_PORT"      : "3000",
+  "SERVICES_PATH" : "http://localhost",
   "SERVICES_PORT" : "3030",
-  "ROUTES_PATH"   : "/controllers/",
-  "VIRTUAL_PATHS" : require("./paths")
+  "ROUTES_PATH"   : "/core/controllers/",
+  "DATABASE_NAME"   : "node-mongo-dumbPhrases"
 }
