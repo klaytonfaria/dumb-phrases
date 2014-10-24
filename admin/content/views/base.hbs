@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+
+  <body>
+
+  <section id="container" >      
+      <!--header start-->
+      {{> header}}
+      <!--header end-->      
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              {{> menu-side}}
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->      
+      
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper site-min-height">            
+            <h3> <a href="/admin"> Admin </a>{{{block "breadcrumb"}}}</h3>
+            <div class="row mt">
+              <div class="col-lg-12">
+                {{{block "main"}}}
+              </div>
+            </div>      
+          </section>
+      </section>
+      <!--main content end-->
+      <!--footer start-->
+      {{> footer}}
+      <!--footer end-->
+  </section>
+
+    {{> footer-scripts}}
+
+  </body>
+</html>

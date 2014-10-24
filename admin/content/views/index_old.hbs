@@ -1,0 +1,73 @@
+<html>  
+{{> header}}
+  <body>
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+          <h1>{{title}}</h1>
+        </div>
+      </div>
+    </div>
+    <!-- End Header and Nav -->
+    <div class="row">
+      <!-- Main Feed -->
+      <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+      <div class="large-9 columns">
+
+      {{#context "posts" id="543fe25918aee60995000002"}}
+        Title: {{posts.title}}
+      {{/context}}
+
+
+        {{#each phrases}}
+        <div class="row">
+          <div class="large-2 columns small-3"><img src="http://placehold.it/80x80&text=[img]" /></div>
+          <div class="large-10 columns">
+            <p><strong>{{author.name}} disse:</strong> {{phrase}}</p>
+            <ul class="inline-list">
+              <li><a href="">Reply</a></li>
+              <li><a href="">Share</a></li>
+            </ul>
+            <h6>2 Comments</h6>
+            <div class="row">
+              <div class="large-2 columns small-3"><img src="http://placehold.it/50x50&text=[img]" /></div>
+              <div class="large-10 columns"><p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit</p></div>
+            </div>
+            <div class="row">
+              <div class="large-2 columns small-3"><img src="http://placehold.it/50x50&text=[img]" /></div>
+              <div class="large-10 columns"><p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit</p></div>
+            </div>
+          </div>
+        </div>
+        <hr /> 
+        {{/each}}
+      </div>
+      <!-- Right Sidebar -->
+      <!-- On small devices this column is hidden -->
+      <aside class="large-3 columns hide-for-small">
+        <p><img src="http://placehold.it/300x440&text=[ad]" /></p>
+        <p><img src="http://placehold.it/300x440&text=[ad]" /></p>
+      </aside>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr />
+        <div class="row">
+          <div class="large-5 columns">
+            <p><small>Developed by {{> author_name}} :)</small></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="/assets/build/script/vendor/jquery.js"></script>
+    <script src="/assets/build/script/vendor/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+<html>
