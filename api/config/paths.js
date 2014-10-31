@@ -1,12 +1,12 @@
 exports.paths = {
   	"home" : {
-		"default" : "/",		
+		"default" : "/",
 	},
 	"posts" : {
-		"default" 	: "/posts",
-		"new"		: "/posts",		
-		"single" 	: "/posts/:id",
-		"update" 	: "/posts/:id",
-		"delete" 	: "/posts/:id"
+		"default" 	: "/api/posts",
+		"new"		: "/api/posts",
+		"single" 	: "/api/posts/:id",
+		"update" 	: "/api/posts/:id",
+		"remove" 	: "/api/posts/:id"
 	}
 }

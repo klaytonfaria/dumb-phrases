@@ -1,7 +1,6 @@
 var appPath = process.cwd() + "/",
     fs = require('fs'),
-    path = require("path"),    
-    mongojs = require('mongojs');
+    path = require("path");
 
 
 // Register all routes dinamically
@@ -13,7 +12,7 @@ exports.requireRecursive = function (app, folderName) {
       if ( stat.isDirectory() ) {
         requireRecursive(fullName);
       } else if ( file.toLowerCase().indexOf('.js') ) {
-        require(appPath + fullName)(app, mongojs);
+        require(appPath + fullName)(app);
       }
     }
   });

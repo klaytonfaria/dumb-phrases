@@ -5,6 +5,7 @@ var express = require("express"),
     fs = require('fs'),
     http = require("http"),
     path = require("path"),
+    mongojs = require('mongojs'),
     utils = require("./extend/utils"),
     paths = require("./config/paths").paths,
     settings = require("./config/settings").constants;
@@ -23,10 +24,11 @@ app.configure(function() {
   app.custom.utils = utils;
   app.custom.paths = paths;
   app.custom.settings = settings;
+  app.custom.db = mongojs;
 });
 
 // Routes
-app.custom.utils.requireRecursive(app, "./controllers/");
+app.custom.utils.requireRecursive(app, "./routes/");
 
 // Create and listen server application
 http.createServer(app).listen(app.get('port'), function(){

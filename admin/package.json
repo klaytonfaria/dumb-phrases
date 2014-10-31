@@ -12,6 +12,8 @@
     "hbs-utils": "0.0.3",
     "mongojs": "~0.10.0",
     "node-rest-client": "~1.0.0",
-    "pretty-error": "~1.1.1"
+    "pretty-error": "~1.1.1",
+    "q": "~1.0.1",
+    "sync": "~0.2.3"
   }
 }
