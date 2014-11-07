@@ -23,3 +23,16 @@ exports.responseJSON = function (status, res, content) {
   res.writeHead(status, {"Content-Type" : "application/json"});
   res.end(JSON.stringify(content));
 }
+
+// Connect to mongodb
+exports.mongoConnect = function (app) {
+  var db = app.custom.db,
+      dbName = app.custom.settings.DATABASE_NAME,
+      dbHost = app.custom.settings.DATABASE_HOST;
+  db.connect(dbHost + dbName, function (error) {
+    if (error) {
+      console.log(error);
+    }
+  });
+  return db;
+}

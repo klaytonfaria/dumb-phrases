@@ -5,7 +5,7 @@ var express = require("express"),
     fs = require('fs'),
     http = require("http"),
     path = require("path"),
-    mongojs = require('mongojs'),
+    mongo = require('mongoose'),
     utils = require("./extend/utils"),
     paths = require("./config/paths").paths,
     settings = require("./config/settings").constants;
@@ -24,7 +24,7 @@ app.configure(function() {
   app.custom.utils = utils;
   app.custom.paths = paths;
   app.custom.settings = settings;
-  app.custom.db = mongojs;
+  app.custom.db = mongo;
 });
 
 // Routes

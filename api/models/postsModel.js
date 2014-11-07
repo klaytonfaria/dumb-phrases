@@ -1,21 +1,33 @@
 module.exports = function(app) {
-	var	Model = require("./modelStructure"),
-		  model = new Model(app.custom.db(app.custom.settings.DATABASE_NAME));
-
-	model.extend({
-		insert: function(data, callback) {
-			this.collection("dumbPhrases").insert(data, {}, callback || function(){});
-		},
-		update: function(query, data, callback) {
-			this.collection("dumbPhrases").update(query, data, {},
-				callback || function(){});
-		},
-		select: function(query, callback) {
-			this.collection("dumbPhrases").find(query || {}).toArray(callback);
-		},
-		remove: function(ID, callback) {
-			this.collection("dumbPhrases").remove({_id:ID}, callback || function(){});
-		}
-	});
-	return model
+	var db = app.custom.utils.mongoConnect(app),
+			Schema = db.Schema,
+			postsSchema = new Schema({
+				"type"				: String,
+				"slug"				: String,
+				"url"					: String,
+				"title"				: String,
+				"content"			: String,
+				"excerpt"			: String,
+				"date"				: Date,
+				"modified"		: Date,
+				"categories"	: [String],
+				"tags"				: [String]
+			}),
+			posts = db.model('posts', postsSchema),
+			fn = {
+				insert: function(data, callback) {
+					var newPost = new posts(data);
+					newPost.save(callback || function() { });
+				},
+				update: function(id, data, callback) {
+						posts.findByIdAndUpdate(id, { $set: data}, callback || function() { });
+				},
+				select: function(query, callback) {
+					posts.find(query, callback || function() { });
+				},
+				remove: function(id, callback) {
+					posts.findByIdAndRemove(id, callback || function(){});
+				}
+			};
+	return fn;
 };
