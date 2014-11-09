@@ -2,16 +2,17 @@ module.exports = function(app) {
 	var db = app.custom.utils.mongoConnect(app),
 			Schema = db.Schema,
 			postsSchema = new Schema({
-				"type"				: String,
-				"slug"				: String,
-				"url"					: String,
-				"title"				: String,
-				"content"			: String,
-				"excerpt"			: String,
-				"date"				: Date,
-				"modified"		: Date,
-				"categories"	: [String],
-				"tags"				: [String]
+				"type"		 : String,
+				"slug"		 : String,
+				"url"		 : String,
+				"title"		 : String,
+				"content"	 : String,
+				"excerpt"	 : String,
+				"date"		 : Date,
+				"modified"	 : Date,
+				"categories" : [String],
+				"tags"		 : [String],
+				"published"	 : Boolean
 			}),
 			posts = db.model('posts', postsSchema),
 			fn = {
