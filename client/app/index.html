@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+</head>
+<body>
+
+
+  <script type="text/x-handlebars">
+    <ul>
+      <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+      <li>{{#link-to 'users'}}Usuários{{/link-to}}</li>
+    </ul>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="users">
+    <div>
+      <h2>Rota "users" acessada!</h2>
+      <h3>Total of {{model.total}} beers!</h3> // Lembre-se que model é a promise retornada!
+      {{#each beer in model.beers}}
+        <p>{{beer.name}} [{{format-date beer.updated_at}}]<br><small>{{beer.description}}</small></p>
+      {{/each}}
+      {{outlet}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="users/teste">
+    <div>
+      <h3>Rota "teste" acessada!</h3>
+    </div>
+  </script>
+
+
+
+
+<script src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>
