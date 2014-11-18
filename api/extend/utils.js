@@ -20,8 +20,11 @@ exports.requireRecursive = function (app, folderName) {
 
 // Utils
 exports.responseJSON = function (status, res, content) {
-  res.writeHead(status, {"Content-Type" : "application/json"});
-  res.end(JSON.stringify(content));
+  res
+  .status(status)
+  .header("Access-Control-Allow-Origin", "*")
+  .header("Access-Control-Allow-Headers", "X-Requested-With")
+  .end(JSON.stringify(content));
 }
 
 // Connect to mongodb
