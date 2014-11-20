@@ -19,6 +19,7 @@ define(["app"], function (App) {
         return data;
 
       });*/
+      return this.dataModel
 
     }
   })
