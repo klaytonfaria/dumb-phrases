@@ -19,7 +19,7 @@ module.exports = function(app) {
     getOne: function(req, res) {
       var filter;
       if (req.params && req.params.id) {
-        filter = {_id:app.custom.db.ObjectId(req.params.id)};
+        filter = {_id:req.params.id};
       }
       model.select(filter, function(err, data) {
         if(err) {

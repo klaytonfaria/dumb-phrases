@@ -32,5 +32,5 @@ app.custom.utils.requireRecursive(app, "./routes/");
 
 // Create and listen server application
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('API server listening on port: ' + app.get('port'));
+  console.log('\x1b[34mAPI server listening on port: ' + app.get('port'));
 });
