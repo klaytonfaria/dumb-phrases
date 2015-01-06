@@ -34,7 +34,7 @@ exports.mongoConnect = function (app) {
       dbHost = app.custom.settings.DATABASE_HOST;
   db.connect(dbHost + dbName, function (error) {
     if (error) {
-      console.log(error);
+      console.log('\x1b[31m'+error);
     }
   });
   return db;
